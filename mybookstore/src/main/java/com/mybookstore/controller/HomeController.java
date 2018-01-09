@@ -2,6 +2,7 @@ package com.mybookstore.controller;
 
 import java.security.Principal;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mybookstore.domain.Book;
 import com.mybookstore.domain.User;
+import com.mybookstore.domain.UserShipping;
 import com.mybookstore.domain.security.PasswordResetToken;
 import com.mybookstore.domain.security.Role;
 import com.mybookstore.domain.security.UserRole;
@@ -35,6 +37,7 @@ import com.mybookstore.service.UserService;
 import com.mybookstore.service.impl.UserSecurityService;
 import com.mybookstore.utility.MailConstructor;
 import com.mybookstore.utility.SecurityUtility;
+import com.mybookstore.utility.USConstants;
 
 @Controller
 public class HomeController {
@@ -133,6 +136,28 @@ public class HomeController {
 		return "myAccount";
 	}
 	
+	@RequestMapping("/myProfile")
+	public String myProfile(Model model, Principal principal) {
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
+		model.addAttribute("userPaymentList", user.getUserPaymentList());
+		model.addAttribute("userShippingList", user.getUserShippingList());
+		/*model.addAttribute("orderList", user.getOrderList());*/
+		
+		UserShipping userShipping = new UserShipping();
+		model.addAttribute("userShipping", userShipping);
+		
+		model.addAttribute("listOfCreditCards", true);
+		model.addAttribute("listOfShippingAddresses", true);
+		
+		List<String> stateList = USConstants.listOfUSStatesCode;
+		Collections.sort(stateList);
+		model.addAttribute("stateList", stateList);
+		model.addAttribute("classActiveEdit", true);
+		
+		return "myProfile";
+	}
+	
 	@RequestMapping(value="/newUser", method = RequestMethod.POST)
 	public String newUserPost(
 			HttpServletRequest request,
@@ -212,4 +237,6 @@ public class HomeController {
 		model.addAttribute("classActiveEdit", true);
 		return "myProfile";
 	}
+	
+	
 }
