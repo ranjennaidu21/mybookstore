@@ -3,6 +3,8 @@ package com.mybookstore.service;
 import java.util.Set;
 
 import com.mybookstore.domain.User;
+import com.mybookstore.domain.UserBilling;
+import com.mybookstore.domain.UserPayment;
 import com.mybookstore.domain.security.PasswordResetToken;
 import com.mybookstore.domain.security.UserRole;
 
@@ -18,4 +20,7 @@ public interface UserService {
 	User createUser(User user, Set<UserRole> userRoles) throws Exception;
 	
 	User save(User user);
+	
+	void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
 }
+

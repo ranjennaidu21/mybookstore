@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mybookstore.domain.User;
+import com.mybookstore.domain.UserBilling;
+import com.mybookstore.domain.UserPayment;
 import com.mybookstore.domain.security.PasswordResetToken;
 import com.mybookstore.domain.security.UserRole;
 import com.mybookstore.repository.PasswordResetTokenRepository;
@@ -50,6 +52,7 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findByEmail(email);
 	}
 	
+	@Override
 	public User createUser(User user, Set<UserRole> userRoles){
 		User localUser = userRepository.findByUsername(user.getUsername());
 		
@@ -71,6 +74,16 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User save(User user) {
 		return userRepository.save(user);
+	}
+	
+	@Override
+	public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
+		userPayment.setUser(user);
+		userPayment.setUserBilling(userBilling);
+		userPayment.setDefaultPayment(true);
+		userBilling.setUserPayment(userPayment);
+		user.getUserPaymentList().add(userPayment);
+		save(user);
 	}
 
 }
