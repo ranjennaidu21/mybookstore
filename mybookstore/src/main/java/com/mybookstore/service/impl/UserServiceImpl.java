@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.mybookstore.domain.User;
 import com.mybookstore.domain.UserBilling;
 import com.mybookstore.domain.UserPayment;
+import com.mybookstore.domain.UserShipping;
 import com.mybookstore.domain.security.PasswordResetToken;
 import com.mybookstore.domain.security.UserRole;
 import com.mybookstore.repository.PasswordResetTokenRepository;
@@ -88,6 +89,14 @@ public class UserServiceImpl implements UserService{
 		userPayment.setDefaultPayment(true);
 		userBilling.setUserPayment(userPayment);
 		user.getUserPaymentList().add(userPayment);
+		save(user);
+	}
+	
+	@Override
+	public void updateUserShipping(UserShipping userShipping, User user){
+		userShipping.setUser(user);
+		userShipping.setUserShippingDefault(true);
+		user.getUserShippingList().add(userShipping);
 		save(user);
 	}
 	
