@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mybookstore.domain.CartItem;
 import com.mybookstore.domain.ShoppingCart;
 import com.mybookstore.domain.User;
+import com.mybookstore.service.CartItemService;
+import com.mybookstore.service.ShoppingCartService;
 import com.mybookstore.service.UserService;
 
 @Controller
@@ -22,6 +24,9 @@ public class ShoppingCartController {
 	
 	@Autowired
 	private CartItemService cartItemService;
+	
+	@Autowired
+	private ShoppingCartService shoppingCartService;
 	
 	@RequestMapping("/cart")
 	public String shoppingCart(Model model, Principal principal) {
