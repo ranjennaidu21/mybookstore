@@ -6,11 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mybookstore.domain.Book;
 import com.mybookstore.domain.CartItem;
 import com.mybookstore.domain.ShoppingCart;
 import com.mybookstore.domain.User;
+import com.mybookstore.service.BookService;
 import com.mybookstore.service.CartItemService;
 import com.mybookstore.service.ShoppingCartService;
 import com.mybookstore.service.UserService;
@@ -24,6 +27,9 @@ public class ShoppingCartController {
 	
 	@Autowired
 	private CartItemService cartItemService;
+	
+	@Autowired
+	private BookService bookService;
 	
 	@Autowired
 	private ShoppingCartService shoppingCartService;
@@ -43,4 +49,23 @@ public class ShoppingCartController {
 		return "shoppingCart";
 	}
 
+	@RequestMapping("/addItem")
+	public String addItem(
+			@ModelAttribute("book") Book book,
+			@ModelAttribute("qty") String qty,
+			Model model, Principal principal
+			) {
+		User user = userService.findByUsername(principal.getName());
+		book = bookService.findOne(book.getId());
+		
+		if (Integer.parseInt(qty) > book.getInStockNumber()) {
+			model.addAttribute("notEnoughStock", true);
+			return "forward:/bookDetail?id="+book.getId();
+		}
+		
+		CartItem cartItem = cartItemService.addBookToCartItem(book, user, Integer.parseInt(qty));
+		model.addAttribute("addBookSuccess", true);
+		
+		return "forward:/bookDetail?id="+book.getId();
+	}
 }
