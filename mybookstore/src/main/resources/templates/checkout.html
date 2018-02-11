@@ -223,132 +223,227 @@
 											</div>
 										</div>
 									</div>
-									
-									<div class="row">
-												<div class="col-xs-7">
-													<div class="form-group">
-														<label>* Expiration Date</label>
-														<div class="row">
-															<div class="col-xs-6">
-																<select class="form-control" name="expiryMonth"
-																	required="required"
-																	th:value="${userPayment.expiryMonth}">
-																	<option disabled="disabled">-- Month --</option>
-																	<option value="01">Jan (01)</option>
-																	<option value="02">Feb (02)</option>
-																	<option value="03">Mar (03)</option>
-																	<option value="04">Apr (04)</option>
-																	<option value="05">May (05)</option>
-																	<option value="06">June (06)</option>
-																	<option value="07">July (07)</option>
-																	<option value="08">Aug (08)</option>
-																	<option value="09">Sep (09)</option>
-																	<option value="10">Oct (10)</option>
-																	<option value="11">Nov (11)</option>
-																	<option value="12">Dec (12)</option>
-																</select>
-															</div>
-															<div class="col-xs-6">
-																<select class="form-control" name="expiryYear"
-																	th:value="${userPayment.expiryYear}">
-																	<option disabled="disabled">-- Year --</option>
-																	<option value="2017">2017</option>
-																	<option value="2018">2018</option>
-																	<option value="19">2019</option>
-																	<option value="20">2020</option>
-																	<option value="21">2021</option>
-																	<option value="22">2022</option>
-																	<option value="23">2023</option>
-																	<option value="23">2024</option>
-																	<option value="23">2025</option>
-																	<option value="23">2026</option>
-																	<option value="23">2027</option>
-																	<option value="23">2028</option>
-																	<option value="23">2029</option>
-																</select>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="col-xs-5">
-													<div class="form-group">
-														<label for="cardCVC">CV Code</label> <input id="cardCVC"
-															type="tel" class="form-control" name="cvc"
-															placeholder="CVC" th:name="cvc"
-															th:value="${userPayment.cvc}" />
-													</div>
-												</div>
-											</div>
-											
-											
-											<!-- Billing Address -->
-											<div class="checkbox">
-												<label>
-													<input id="theSameAsShippingAddress" type="checkbox"
-												name="billingSameAsShipping" value="true" /> The same as shipping address
-												</label>
-											</div>
-											
-											<div class="form-group">
-												<label for="billingName">* Name</label> <input type="text"
-													class="form-control" id="billingName"
-													placeholder="Receiver Name" th:name="billingAddressName"
-													required="required"
-													th:value="${billingAddress.billingAddressName}" />
-											</div>
-											<div class="form-group">
-												<label for="billingAddress">* Street Address</label> <input
-													type="text" class="form-control" id="billingAddress"
-													placeholder="Street Address 1" th:name="billingAddressStreet1"
-													required="required"
-													th:value="${billingAddress.billingAddressStreet1}" /> <input
-													type="text" class="form-control" id="billingAddress"
-													placeholder="Street Address 2" th:name="billingAddressStreet2"
-													th:value="${billingAddress.userBillingStreet2}" />
-											</div>
 
-											<div class="row">
-												<div class="col-xs-4">
-													<div class="form-group">
-														<label for="billingCity">* City</label> <input type="text"
-															class="form-control" id="billingCity"
-															placeholder="Billing city" th:name="billingAddressCity"
-															required="required"
-															th:value="${billingAddress.billingAddressCity}" />
+									<div class="row">
+										<div class="col-xs-7">
+											<div class="form-group">
+												<label>* Expiration Date</label>
+												<div class="row">
+													<div class="col-xs-6">
+														<select class="form-control" name="expiryMonth"
+															required="required" th:value="${userPayment.expiryMonth}">
+															<option disabled="disabled">-- Month --</option>
+															<option value="01">Jan (01)</option>
+															<option value="02">Feb (02)</option>
+															<option value="03">Mar (03)</option>
+															<option value="04">Apr (04)</option>
+															<option value="05">May (05)</option>
+															<option value="06">June (06)</option>
+															<option value="07">July (07)</option>
+															<option value="08">Aug (08)</option>
+															<option value="09">Sep (09)</option>
+															<option value="10">Oct (10)</option>
+															<option value="11">Nov (11)</option>
+															<option value="12">Dec (12)</option>
+														</select>
 													</div>
-												</div>
-												<div class="col-xs-4">
-													<div class="form-group">
-														<label for="billingState">* State</label> <select
-															id="billingState" class="form-control"
-															th:name="billingAddress"
-															th:value="${billingAddress.billingAddressState}"
-															required="required">
-															<option value="" disabled="disabled">Please
-																select an option</option>
-															<option th:each="state : ${stateList}" th:text="${state}"
-																th:selected="(${billingAddress.billingAddressState}==${state})"></option>
+													<div class="col-xs-6">
+														<select class="form-control" name="expiryYear"
+															th:value="${userPayment.expiryYear}">
+															<option disabled="disabled">-- Year --</option>
+															<option value="2017">2017</option>
+															<option value="2018">2018</option>
+															<option value="19">2019</option>
+															<option value="20">2020</option>
+															<option value="21">2021</option>
+															<option value="22">2022</option>
+															<option value="23">2023</option>
+															<option value="23">2024</option>
+															<option value="23">2025</option>
+															<option value="23">2026</option>
+															<option value="23">2027</option>
+															<option value="23">2028</option>
+															<option value="23">2029</option>
 														</select>
 													</div>
 												</div>
-												<div class="col-xs-4">
-													<div class="form-group">
-														<label for="billingZipcode">* Zipcode</label> <input
-															type="text" class="form-control" id="billingZipcode"
-															placeholder="Billing Zipcode"
-															th:name="billingAddressZipcode" required="required"
-															th:value="${billingAddress.billingAddressZipcode}" />
-													</div>
-												</div>
 											</div>
-											
-											<a data-toggele="collapse" data-parent="#accordion"
+										</div>
+										<div class="col-xs-5">
+											<div class="form-group">
+												<label for="cardCVC">CV Code</label> <input id="cardCVC"
+													type="tel" class="form-control" name="cvc"
+													placeholder="CVC" th:name="cvc"
+													th:value="${userPayment.cvc}" />
+											</div>
+										</div>
+									</div>
+
+
+									<!-- Billing Address -->
+									<div class="checkbox">
+										<label> <input id="theSameAsShippingAddress"
+											type="checkbox" name="billingSameAsShipping" value="true" />
+											The same as shipping address
+										</label>
+									</div>
+
+									<div class="form-group">
+										<label for="billingName">* Name</label> <input type="text"
+											class="form-control" id="billingName"
+											placeholder="Receiver Name" th:name="billingAddressName"
+											required="required"
+											th:value="${billingAddress.billingAddressName}" />
+									</div>
+									<div class="form-group">
+										<label for="billingAddress">* Street Address</label> <input
+											type="text" class="form-control" id="billingAddress"
+											placeholder="Street Address 1"
+											th:name="billingAddressStreet1" required="required"
+											th:value="${billingAddress.billingAddressStreet1}" /> <input
+											type="text" class="form-control" id="billingAddress"
+											placeholder="Street Address 2"
+											th:name="billingAddressStreet2"
+											th:value="${billingAddress.userBillingStreet2}" />
+									</div>
+
+									<div class="row">
+										<div class="col-xs-4">
+											<div class="form-group">
+												<label for="billingCity">* City</label> <input type="text"
+													class="form-control" id="billingCity"
+													placeholder="Billing city" th:name="billingAddressCity"
+													required="required"
+													th:value="${billingAddress.billingAddressCity}" />
+											</div>
+										</div>
+										<div class="col-xs-4">
+											<div class="form-group">
+												<label for="billingState">* State</label> <select
+													id="billingState" class="form-control"
+													th:name="billingAddress"
+													th:value="${billingAddress.billingAddressState}"
+													required="required">
+													<option value="" disabled="disabled">Please select
+														an option</option>
+													<option th:each="state : ${stateList}" th:text="${state}"
+														th:selected="(${billingAddress.billingAddressState}==${state})"></option>
+												</select>
+											</div>
+										</div>
+										<div class="col-xs-4">
+											<div class="form-group">
+												<label for="billingZipcode">* Zipcode</label> <input
+													type="text" class="form-control" id="billingZipcode"
+													placeholder="Billing Zipcode"
+													th:name="billingAddressZipcode" required="required"
+													th:value="${billingAddress.billingAddressZipcode}" />
+											</div>
+										</div>
+									</div>
+
+									<a data-toggele="collapse" data-parent="#accordion"
 										class="btn btn-warning pull-right" href="#reviewItems">Next</a>
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- 3. Review Items and Shipping -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#reviewItems"> 3. Review Items and Shipping </a>
+								</h4>
+							</div>
+							<div id="reviewItems" class="panel-collapse collapse">
+								<div class="panel-body">
+									<h4>Choose your shipping method:</h4>
+									<div class="radio">
+										<label> <input type="radio" name="shippingMethod"
+											value="groundShipping" checked="checked" /> Ground Shipping
+										</label>
+									</div>
+									<div class="radio">
+										<label> <input type="radio" name="shippingMethod"
+											value="premiumShipping" /> Premium Shipping
+										</label>
+									</div>
+
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>Products</h4>
+										</div>
+										<div class="col-xs-2">
+											<h4>Price</h4>
+										</div>
+										<div class="col-xs-2">
+											<h4>Qty</h4>
+										</div>
+									</div>
+
+									<!-- display products in cart -->
+									<div class="row" th:each="cartItem : ${cartItemList}">
+											method="post">
+											<hr />
+											<div class="col-xs-2">
+												<a th:href="@{/bookDetail(id=${cartItem.book.id})}"> <img
+													class="img-responsive shelf-book"
+													th:src="#{adminPath}+@{/image/book/}+${cartItem.book.id}+'.png'"
+													style="width: 70px;" />
+												</a>
+											</div>
+											<div class="col-xs-6">
+												<div style="margin-left: 50px;">
+													<a th:href="@{/bookDetail?id=}+${cartItem.book.id}"><h4
+															th:text="${cartItem.book.title}"></h4></a>
+													<p th:if="${cartItem.book.inStockNumber&gt;10}"
+														style="color: green;">In Stock</p>
+													<p
+														th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}"
+														style="color: green;">
+														Only <span th:text="${cartItem.book.inStockNumber}"></span>
+														In Stock
+													</p>
+													<p th:if="${cartItem.book.inStockNumber==0}"
+														style="color: darkred;">Product Unavailable</p>
+													<a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}">delete</a>
+												</div>
+											</div>
+
+											<div class="col-xs-2">
+												<h5 style="color: #db3208; font-size: large;">
+													$<span th:text="${cartItem.book.ourPrice}"
+														th:style="${cartItem.book.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
+												</h5>
+											</div>
+
+											<div class="col-xs-2">
+												<h5 style="font-size: large;" th:text="${cartItem.qty}"></h5>
+											</div>
+										
+									</div>
+
+									<hr />
+									<hr />
+									<h4 class="col-xs-12 text-right">
+										<strong style="font-size: large;">Order Total (<span
+											th:text="${#lists.size(cartItemList)}"></span> items):
+										</strong> <span style="color: #db3208; font-szie: large;">$<span
+											th:text="${shoppingCart.grandTotal}"></span></span>
+									</h4>
+									<br />
+									<br />
+									<button type="submit" class="btn btn-warning btn-block">Place
+										your order</button>
+									<p style="font-size: smaller;">
+										By placing your order, you agree to Le's Bookstore <a href="#">privacy</a>
+										notice and <a href="#">conditions</a> of use.
+									</p>
+								</div>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</form>
