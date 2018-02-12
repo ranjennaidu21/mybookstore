@@ -1,6 +1,7 @@
 package com.mybookstore.controller;
 
 import java.security.Principal;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,12 @@ import com.mybookstore.domain.ShoppingCart;
 import com.mybookstore.domain.User;
 import com.mybookstore.domain.UserPayment;
 import com.mybookstore.domain.UserShipping;
+import com.mybookstore.service.BillingAddressService;
 import com.mybookstore.service.CartItemService;
+import com.mybookstore.service.PaymentService;
 import com.mybookstore.service.ShippingAddressService;
 import com.mybookstore.service.UserService;
+import com.mybookstore.utility.USConstants;
 
 @Controller
 public class CheckoutController {
@@ -36,6 +40,12 @@ public class CheckoutController {
 	
 	@Autowired
 	private ShippingAddressService shippingAddressService;
+	
+	@Autowired
+	private BillingAddressService billingAddressService;
+	
+	@Autowired
+	private PaymentService paymentService;
 	
 	@RequestMapping("/checkout")
 	public String checkout(
@@ -76,9 +86,9 @@ public class CheckoutController {
 		}
 		
 		if (userShippingList.size() == 0) {
-			model.addAttribute("emptyShipingList", true);
+			model.addAttribute("emptyShippingList", true);
 		} else {
-			model.addAttribute("emptyShipingList", false);
+			model.addAttribute("emptyShippingList", false);
 		}
 		
 		ShoppingCart shoppingCart = user.getShoppingCart();
@@ -95,5 +105,24 @@ public class CheckoutController {
 				billingAddressService.setByUserBilling(userPayment.getUserBilling(), billingAddress);
 			}
 		}
+		
+		model.addAttribute("shippingAddress", shippingAddress);
+		model.addAttribute("payment", payment);
+		model.addAttribute("billingAddress", billingAddress);
+		model.addAttribute("cartItemList", cartItemList);
+		model.addAttribute("shoppingCart", user.getShoppingCart());
+		
+		List<String> stateList = USConstants.listOfUSStatesCode;
+		Collections.sort(stateList);
+		model.addAttribute("stateList", stateList);
+		
+		model.addAttribute("classActiveShipping", true);
+		
+		if(missingRequiredField) {
+			model.addAttribute("missingRequiredField", true);
+		}
+		
+		return "checkout";
+		
 	}
 }
