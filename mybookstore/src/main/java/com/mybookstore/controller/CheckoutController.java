@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mybookstore.domain.BillingAddress;
 import com.mybookstore.domain.CartItem;
+import com.mybookstore.domain.Order;
 import com.mybookstore.domain.Payment;
 import com.mybookstore.domain.ShippingAddress;
 import com.mybookstore.domain.ShoppingCart;
@@ -26,6 +27,7 @@ import com.mybookstore.domain.UserPayment;
 import com.mybookstore.domain.UserShipping;
 import com.mybookstore.service.BillingAddressService;
 import com.mybookstore.service.CartItemService;
+import com.mybookstore.service.OrderService;
 import com.mybookstore.service.PaymentService;
 import com.mybookstore.service.ShippingAddressService;
 import com.mybookstore.service.ShoppingCartService;
@@ -67,6 +69,9 @@ public class CheckoutController {
 
 	@Autowired
 	private UserPaymentService userPaymentService;
+	
+	@Autowired
+	private OrderService orderService;
 
 	@RequestMapping("/checkout")
 	public String checkout(@RequestParam("id") Long cartId,
