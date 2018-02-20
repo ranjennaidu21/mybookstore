@@ -48,6 +48,15 @@
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
+									
+									<div class="alert alert-danger" th:if="${incorrectPassword}">
+										<strong>Incorrect Password!</strong> Pleae enter the correct password for the current user.
+									</div>
+									
+									<div class="alert alert-succss" th:if="${updateSuccess}">
+										<strong>Update Success!</strong>
+									</div>
+									
 									<form th:action="@{/updateUserInfo}" method="post">
 										<input type="hidden" name="id" th:value="${user.id}" />
 
