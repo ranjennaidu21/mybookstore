@@ -127,7 +127,7 @@
 
 					<!-- Order Information -->
 					<div class="tab-pane fade" id="tab-2"
-						th:classappend="${classActiveOrder}? 'in active'">
+						th:classappend="${classActiveOrders}? 'in active'">
 						<div class="panel-group">
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
@@ -190,7 +190,7 @@
 															</div>
 															<div class="panel-body">
 																<span th:text="${order.payment.holderName}">Card
-																	Name</span><br /> <span th:text="${order.payment.cartNumber}">Card
+																	Name</span><br /> <span th:text="${order.payment.cardNumber}">Card
 																	Number</span><br /> <span>Exp Date:</span><span
 																	th:text="${order.payment.expiryMonth}"></span>/<span
 																	th:text="${order.payment.expiryYear}"></span><br />
