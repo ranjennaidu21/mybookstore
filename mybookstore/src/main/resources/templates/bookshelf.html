@@ -38,16 +38,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="book-item" data-th-each="book : ${bookList}">
+						<tr class="book-item" data-th-each="book : ${bookList}" >
 							<td>
 								<div th:if="${book != null}">
-									<div class="row">
+									<div class="row" style="margin-bottom: 50px;">
 										<div class="col-xs-3">
-											<a th:href="@{/bookDetail?id=}+${book.id}"><img
+											<a th:href="@{/bookDetail?id=}+${book.id}"><img 
 												class="img-responsive shelf-book"
 												th:src="#{adminPath}+@{/image/book/}+${book.id}+'.png'" /></a>
 										</div>
-										<div class="col-xs-9">
+										<div class="col-xs-9" >
 											<a th:href="@{/bookDetail?id=}+${book.id}"><h4
 													th:text="${book.title}"></h4></a> <span
 												th:text="${book.publicationDate}"></span>
@@ -71,12 +71,6 @@
 						</tr>
 					</tbody>
 				</table>
-
-
-
-
-
-
 			</div>
 		</div>
 	</div>
@@ -84,5 +78,21 @@
 
 
 	<div th:replace="common/header :: body-bottom-scripts" />
+	
+	<script>
+		$(document).ready(function() {
+			$('#bookList').DataTable({
+				"lengthMenu":[[5,10,15,20,-1],[5,10,15,20,"All"]],
+				"ordering":false,
+				stateSave:true
+			});
+			
+			$("#bookList").on('page.dt', function() {
+				$('html, body').animate({
+					scrollTop: $('#bookList').offset().top
+				}, 200);
+			});
+		});
+	</script>
 </body>
 </html>
