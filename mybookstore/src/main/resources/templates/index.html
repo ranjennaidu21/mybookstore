@@ -7,10 +7,10 @@
 	<div th:replace="common/header :: navbar" />
 
 	<div class="container">
-		<div class="row">
+		<div class="row banner">
 			<!-- carousel -->
 			<div class="col-xs-8">
-				<div class="panel panel-default">
+				<div class="panel panel-default" style="margin-top: 20px;">
 					<div class="panel-body">
 						<div id="carousel-example-generic" class="carousel slide"
 							data-ride="carousel">
@@ -85,21 +85,21 @@
 			<div class="col-xs-4">
 				<div clas="panel panel-default">
 					<div class="panel-body">
-						<img src="/image/bestseller.png" class="img-responsive" />
+						<a th:href="@{/bookshelf}"><img src="/image/bestseller.png" class="img-responsive" /></a>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-4">
 				<div clas="panel panel-default">
 					<div class="panel-body">
-						<img src="/image/hours.png" class="img-responsive" />
+						<a th:href="@{/hours}"><img src="/image/hours.png" class="img-responsive" /></a>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-4">
 				<div clas="panel panel-default">
 					<div class="panel-body">
-						<img src="/image/faq.png" class="img-responsive" />
+						<a th:href="@{/faq}"><img src="/image/faq.png" class="img-responsive" /></a>
 					</div>
 				</div>
 			</div>
@@ -217,7 +217,7 @@
 	</div>
 	<!-- end of container -->
 
-
+<div th:replace="common/header :: footer"/>
 	<div th:replace="common/header :: body-bottom-scripts" />
 </body>
 </html>

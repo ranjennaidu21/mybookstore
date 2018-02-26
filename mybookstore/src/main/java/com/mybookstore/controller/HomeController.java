@@ -89,6 +89,16 @@ public class HomeController {
 		return "myAccount";
 	}
 	
+	@RequestMapping("/hours")
+	public String hours() {
+		return "hours";
+	}
+	
+	@RequestMapping("/faq")
+	public String faq() {
+		return "faq";
+	}
+	
 	@RequestMapping("/bookshelf")
 	public String bookshelf(Model model) {
 		List<Book> bookList = bookService.findAll();
