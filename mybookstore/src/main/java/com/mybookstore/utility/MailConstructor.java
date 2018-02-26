@@ -33,7 +33,7 @@ public class MailConstructor {
 		String message = "\nPlease click on this link to verify your email and edit your personal information. Your password is: \n"+password;
 		SimpleMailMessage email = new SimpleMailMessage();
 		email.setTo(user.getEmail());
-		email.setSubject("Le's Bookstore - New User");
+		email.setSubject("Ranjen's Bookstore - New User");
 		email.setText(url+message);
 		email.setFrom(env.getProperty("support.email"));
 		return email;
