@@ -64,8 +64,14 @@
 								<a th:href="@{bookDetail(id=${cartItem.book.id})}"> <img
 									style="width:70px;"
 									class="img-responsive shelf-book center-block"
-									th:src="#{adminPath}+@{/image/book/}+
+									th:src="@{/image/book/}+
 								${cartItem.book.id}+'.png'" />
+									<!-- currently taking pic from mybookstore, in future this should retrieve from adminportal image folder -->
+<!-- 								<a th:href="@{bookDetail(id=${cartItem.book.id})}"> <img
+									style="width:70px;"
+									class="img-responsive shelf-book center-block"
+									th:src="#{adminPath}+@{/image/book/}+
+								${cartItem.book.id}+'.png'" /> -->
 								</a>
 							</div>
 							<div class="col-xs-6">
