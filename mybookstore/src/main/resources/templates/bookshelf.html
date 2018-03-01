@@ -57,7 +57,10 @@
 										<div class="col-xs-3">
 											<a th:href="@{/bookDetail?id=}+${book.id}"><img 
 												class="img-responsive shelf-book"
-												th:src="#{adminPath}+@{/image/book/}+${book.id}+'.png'" /></a>
+												th:src="@{/image/book/}+${book.id}+'.png'" />
+											</a>
+												<!-- currently taking pic from mybookstore, in future this should retrieve from adminportal image folder -->
+												<!-- th:src="#{adminPath}+@{/image/book/}+${book.id}+'.png'" /></a> -->
 										</div>
 										<div class="col-xs-9" >
 											<a th:href="@{/bookDetail?id=}+${book.id}"><h4
