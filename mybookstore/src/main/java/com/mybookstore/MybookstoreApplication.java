@@ -41,7 +41,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		
 		userService.createUser(user1, userRoles);
 		
-		User user2 = new User();
+/*		User user2 = new User();
 		user2.setFirstName("User");
 		user2.setLastName("2");
 		user2.setUsername("user2");
@@ -445,6 +445,6 @@ public class MybookstoreApplication implements CommandLineRunner {
 		role30.setName("ROLE_USER");
 		userRoles.add(new UserRole(user30, role30));
 		
-		userService.createUser(user30, userRoles30);
+		userService.createUser(user30, userRoles30);*/
 	}
 }
