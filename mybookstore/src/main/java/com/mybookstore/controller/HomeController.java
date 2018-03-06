@@ -79,8 +79,19 @@ public class HomeController {
 	private OrderService orderService;
 
 	@RequestMapping("/")
-	public String index() {
-		return "index";
+	public String index(Model model, Principal principal) {
+		/*return "index";*/
+		if(principal != null) {
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user", user);
+		}
+		
+		List<Book> bookList = bookService.findAll();
+		model.addAttribute("bookList", bookList);
+		model.addAttribute("activeAll",true);
+		
+		return "bookshelf";
 	}
 
 	@RequestMapping("/login")
