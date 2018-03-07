@@ -85,13 +85,14 @@ public class CheckoutController {
 		User user = userService.findByUsername(principal.getName());
 		System.out.println("Principal Name: " + principal.getName());
 		System.out.println("User: " + user.toString());
-
+		System.out.println("BBBB");
+		System.out.println("cart id: " + cartId);
+		System.out.println("shopping card id: " + user.getShoppingCart().getId());
 		if (cartId != user.getShoppingCart().getId()) {
 			return "badRequestPage";
 		}
-
+		System.out.println("CCCCC");
 		List<CartItem> cartItemList = cartItemService.findByShoppingCart(user.getShoppingCart());
-		System.out.println("BBBB");
 		if (cartItemList.size() == 0) {
 			model.addAttribute("emptyCart", true);
 			return "forward:/shoppintCart/cart";
@@ -103,7 +104,7 @@ public class CheckoutController {
 				return "forward:/shoppingCart/cart";
 			}
 		}
-		System.out.println("CCCCC");
+
 		List<UserShipping> userShippingList = user.getUserShippingList();
 		List<UserPayment> userPaymentList = user.getUserPaymentList();
 
