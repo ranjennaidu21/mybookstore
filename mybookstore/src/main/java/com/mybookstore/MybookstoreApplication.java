@@ -47,13 +47,13 @@ public class MybookstoreApplication implements CommandLineRunner {
 		user1.setUsername("user1");
 		user1.setPassword(SecurityUtility.passwordEncoder().encode("user1"));
 		user1.setEmail("user1@gmail.com");
-/*		Set<UserRole> userRoles1 = new HashSet<>();
+		Set<UserRole> userRoles1 = new HashSet<>();
 		Role role1= new Role();
 		role1.setRoleId(1);
-		role1.setName("ROLE_USER");*/
-		userRoles.add(new UserRole(user1, role));
+		role1.setName("ROLE_USER");
+		userRoles.add(new UserRole(user1, role1));
 		
-		userService.createUser(user1, userRoles);
+		userService.createUser(user1, userRoles1);
 		
 /*		
 		User user2 = new User();
