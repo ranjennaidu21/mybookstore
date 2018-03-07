@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
+//import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,7 +34,7 @@ import com.mybookstore.service.ShoppingCartService;
 import com.mybookstore.service.UserPaymentService;
 import com.mybookstore.service.UserService;
 import com.mybookstore.service.UserShippingService;
-import com.mybookstore.utility.MailConstructor;
+//import com.mybookstore.utility.MailConstructor;
 import com.mybookstore.utility.USConstants;
 
 @Controller
@@ -44,11 +44,11 @@ public class CheckoutController {
 	private BillingAddress billingAddress = new BillingAddress();
 	private Payment payment = new Payment();
 
-	@Autowired
-	private JavaMailSender mailSender;
+	//@Autowired
+	//private JavaMailSender mailSender;
 	
-	@Autowired
-	private MailConstructor mailConstructor;
+	//@Autowired
+	//private MailConstructor mailConstructor;
 	
 	@Autowired
 	private UserService userService;
@@ -191,7 +191,7 @@ public class CheckoutController {
 		
 		Order order = orderService.createOrder(shoppingCart, shippingAddress, billingAddress, payment, shippingMethod, user);
 		
-		mailSender.send(mailConstructor.constructOrderConfirmationEmail(user, order, Locale.ENGLISH));
+		//mailSender.send(mailConstructor.constructOrderConfirmationEmail(user, order, Locale.ENGLISH));
 		
 		shoppingCartService.clearShoppingCart(shoppingCart);
 		
