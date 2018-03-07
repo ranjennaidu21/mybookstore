@@ -47,14 +47,15 @@ public class MybookstoreApplication implements CommandLineRunner {
 		user1.setUsername("user1");
 		user1.setPassword(SecurityUtility.passwordEncoder().encode("user1"));
 		user1.setEmail("user1@gmail.com");
-		Set<UserRole> userRoles1 = new HashSet<>();
+/*		Set<UserRole> userRoles1 = new HashSet<>();
 		Role role1= new Role();
 		role1.setRoleId(1);
-		role1.setName("ROLE_USER");
-		userRoles1.add(new UserRole(user1, role1));
+		role1.setName("ROLE_USER");*/
+		userRoles.add(new UserRole(user1, role));
 		
-		userService.createUser(user1, userRoles1);
+		userService.createUser(user1, userRoles);
 		
+/*		
 		User user2 = new User();
 		user2.setFirstName("User");
 		user2.setLastName("2");
@@ -459,6 +460,6 @@ public class MybookstoreApplication implements CommandLineRunner {
 		role30.setName("ROLE_USER");
 		userRoles30.add(new UserRole(user30, role30));
 		
-		userService.createUser(user30, userRoles30);
+		userService.createUser(user30, userRoles30);*/
 	}
 }
