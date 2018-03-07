@@ -83,6 +83,8 @@ public class CheckoutController {
 			Principal principal) {
 		System.out.println("AAAA");
 		User user = userService.findByUsername(principal.getName());
+		System.out.println("Principal Name: " + principal.getName());
+		System.out.println("User: " + user.toString());
 
 		if (cartId != user.getShoppingCart().getId()) {
 			return "badRequestPage";
