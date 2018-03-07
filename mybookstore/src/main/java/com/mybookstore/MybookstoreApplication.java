@@ -27,21 +27,35 @@ public class MybookstoreApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		User user1 = new User();
-		user1.setFirstName("John");
-		user1.setLastName("Adams");
-		user1.setUsername("j");
-		user1.setPassword(SecurityUtility.passwordEncoder().encode("p"));
-		user1.setEmail("JAdams@gmail.com");
+		User user = new User();
+		user.setFirstName("John");
+		user.setLastName("Adams");
+		user.setUsername("j");
+		user.setPassword(SecurityUtility.passwordEncoder().encode("p"));
+		user.setEmail("JAdams@gmail.com");
 		Set<UserRole> userRoles = new HashSet<>();
+		Role role= new Role();
+		role.setRoleId(1);
+		role.setName("ROLE_USER");
+		userRoles.add(new UserRole(user, role));
+		
+		userService.createUser(user, userRoles);
+		
+/*		User user1 = new User();
+		user1.setFirstName("User");
+		user1.setLastName("2");
+		user1.setUsername("user2");
+		user1.setPassword(SecurityUtility.passwordEncoder().encode("user2"));
+		user1.setEmail("user2@gmail.com");
+		Set<UserRole> userRoles1 = new HashSet<>();
 		Role role1= new Role();
 		role1.setRoleId(1);
 		role1.setName("ROLE_USER");
-		userRoles.add(new UserRole(user1, role1));
+		userRoles1.add(new UserRole(user1, role1));
 		
-		userService.createUser(user1, userRoles);
+		userService.createUser(user1, userRoles1);
 		
-/*		User user2 = new User();
+		User user2 = new User();
 		user2.setFirstName("User");
 		user2.setLastName("2");
 		user2.setUsername("user2");
@@ -51,7 +65,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role2= new Role();
 		role2.setRoleId(1);
 		role2.setName("ROLE_USER");
-		userRoles.add(new UserRole(user2, role2));
+		userRoles2.add(new UserRole(user2, role2));
 		
 		userService.createUser(user2, userRoles2);
 		
@@ -65,7 +79,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role3= new Role();
 		role3.setRoleId(1);
 		role3.setName("ROLE_USER");
-		userRoles.add(new UserRole(user3, role3));
+		userRoles3.add(new UserRole(user3, role3));
 		
 		userService.createUser(user3, userRoles3);
 		
@@ -79,7 +93,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role4= new Role();
 		role4.setRoleId(1);
 		role4.setName("ROLE_USER");
-		userRoles.add(new UserRole(user4, role4));
+		userRoles4.add(new UserRole(user4, role4));
 		
 		userService.createUser(user4, userRoles4);
 		
@@ -93,7 +107,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role5= new Role();
 		role5.setRoleId(1);
 		role5.setName("ROLE_USER");
-		userRoles.add(new UserRole(user5, role5));
+		userRoles5.add(new UserRole(user5, role5));
 		
 		userService.createUser(user5, userRoles5);
 		
@@ -107,7 +121,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role6= new Role();
 		role6.setRoleId(1);
 		role6.setName("ROLE_USER");
-		userRoles.add(new UserRole(user6, role6));
+		userRoles6.add(new UserRole(user6, role6));
 		
 		userService.createUser(user6, userRoles6);
 		
@@ -121,7 +135,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role7= new Role();
 		role7.setRoleId(1);
 		role7.setName("ROLE_USER");
-		userRoles.add(new UserRole(user7, role7));
+		userRoles7.add(new UserRole(user7, role7));
 		
 		userService.createUser(user7, userRoles7);
 		
@@ -135,7 +149,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role8= new Role();
 		role8.setRoleId(1);
 		role8.setName("ROLE_USER");
-		userRoles.add(new UserRole(user8, role8));
+		userRoles8.add(new UserRole(user8, role8));
 		
 		userService.createUser(user8, userRoles8);
 		
@@ -149,7 +163,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role9= new Role();
 		role9.setRoleId(1);
 		role9.setName("ROLE_USER");
-		userRoles.add(new UserRole(user9, role9));
+		userRoles9.add(new UserRole(user9, role9));
 		
 		userService.createUser(user9, userRoles9);
 		
@@ -163,7 +177,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role10= new Role();
 		role10.setRoleId(1);
 		role10.setName("ROLE_USER");
-		userRoles.add(new UserRole(user10, role10));
+		userRoles10.add(new UserRole(user10, role10));
 		
 		userService.createUser(user10, userRoles10);
 		
@@ -177,7 +191,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role11= new Role();
 		role11.setRoleId(1);
 		role11.setName("ROLE_USER");
-		userRoles.add(new UserRole(user11, role11));
+		userRoles11.add(new UserRole(user11, role11));
 		
 		userService.createUser(user11, userRoles11);
 		
@@ -191,7 +205,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role12= new Role();
 		role12.setRoleId(1);
 		role12.setName("ROLE_USER");
-		userRoles.add(new UserRole(user12, role12));
+		userRoles12.add(new UserRole(user12, role12));
 		
 		userService.createUser(user12, userRoles12);
 		
@@ -205,7 +219,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role13= new Role();
 		role13.setRoleId(1);
 		role13.setName("ROLE_USER");
-		userRoles.add(new UserRole(user13, role13));
+		userRoles13.add(new UserRole(user13, role13));
 		
 		userService.createUser(user13, userRoles13);
 		
@@ -219,7 +233,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role14= new Role();
 		role14.setRoleId(1);
 		role14.setName("ROLE_USER");
-		userRoles.add(new UserRole(user14, role14));
+		userRoles14.add(new UserRole(user14, role14));
 		
 		userService.createUser(user14, userRoles14);
 		
@@ -233,7 +247,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role15= new Role();
 		role15.setRoleId(1);
 		role15.setName("ROLE_USER");
-		userRoles.add(new UserRole(user15, role15));
+		userRoles15.add(new UserRole(user15, role15));
 		
 		userService.createUser(user15, userRoles15);
 		
@@ -247,7 +261,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role16= new Role();
 		role16.setRoleId(1);
 		role16.setName("ROLE_USER");
-		userRoles.add(new UserRole(user16, role16));
+		userRoles16.add(new UserRole(user16, role16));
 		
 		userService.createUser(user16, userRoles16);
 		
@@ -261,7 +275,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role17= new Role();
 		role17.setRoleId(1);
 		role17.setName("ROLE_USER");
-		userRoles.add(new UserRole(user17, role17));
+		userRoles17.add(new UserRole(user17, role17));
 		
 		userService.createUser(user17, userRoles17);
 		
@@ -275,7 +289,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role18= new Role();
 		role18.setRoleId(1);
 		role18.setName("ROLE_USER");
-		userRoles.add(new UserRole(user18, role18));
+		userRoles18.add(new UserRole(user18, role18));
 		
 		userService.createUser(user18, userRoles18);
 		
@@ -289,7 +303,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role19= new Role();
 		role19.setRoleId(1);
 		role19.setName("ROLE_USER");
-		userRoles.add(new UserRole(user19, role19));
+		userRoles19.add(new UserRole(user19, role19));
 		
 		userService.createUser(user19, userRoles19);
 		
@@ -303,7 +317,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role20= new Role();
 		role20.setRoleId(1);
 		role20.setName("ROLE_USER");
-		userRoles.add(new UserRole(user20, role20));
+		userRoles20.add(new UserRole(user20, role20));
 		
 		userService.createUser(user20, userRoles20);
 		
@@ -317,7 +331,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role21= new Role();
 		role21.setRoleId(1);
 		role21.setName("ROLE_USER");
-		userRoles.add(new UserRole(user21, role21));
+		userRoles21.add(new UserRole(user21, role21));
 		
 		userService.createUser(user21, userRoles21);
 		
@@ -331,7 +345,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role22= new Role();
 		role22.setRoleId(1);
 		role22.setName("ROLE_USER");
-		userRoles.add(new UserRole(user22, role22));
+		userRoles22.add(new UserRole(user22, role22));
 		
 		userService.createUser(user22, userRoles22);
 		
@@ -345,7 +359,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role23= new Role();
 		role23.setRoleId(1);
 		role23.setName("ROLE_USER");
-		userRoles.add(new UserRole(user23, role23));
+		userRoles23.add(new UserRole(user23, role23));
 		
 		userService.createUser(user23, userRoles23);
 		
@@ -359,7 +373,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role24= new Role();
 		role24.setRoleId(1);
 		role24.setName("ROLE_USER");
-		userRoles.add(new UserRole(user24, role24));
+		userRoles24.add(new UserRole(user24, role24));
 		
 		userService.createUser(user24, userRoles24);
 		
@@ -373,7 +387,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role25= new Role();
 		role25.setRoleId(1);
 		role25.setName("ROLE_USER");
-		userRoles.add(new UserRole(user25, role25));
+		userRoles25.add(new UserRole(user25, role25));
 		
 		userService.createUser(user25, userRoles25);
 		
@@ -387,7 +401,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role26= new Role();
 		role26.setRoleId(1);
 		role26.setName("ROLE_USER");
-		userRoles.add(new UserRole(user26, role26));
+		userRoles26.add(new UserRole(user26, role26));
 		
 		userService.createUser(user26, userRoles26);
 		
@@ -401,7 +415,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role27= new Role();
 		role27.setRoleId(1);
 		role27.setName("ROLE_USER");
-		userRoles.add(new UserRole(user27, role27));
+		userRoles27.add(new UserRole(user27, role27));
 		
 		userService.createUser(user27, userRoles27);
 		
@@ -415,7 +429,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role28= new Role();
 		role28.setRoleId(1);
 		role28.setName("ROLE_USER");
-		userRoles.add(new UserRole(user28, role28));
+		userRoles28.add(new UserRole(user28, role28));
 		
 		userService.createUser(user28, userRoles28);
 		
@@ -429,7 +443,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role29= new Role();
 		role29.setRoleId(1);
 		role29.setName("ROLE_USER");
-		userRoles.add(new UserRole(user29, role29));
+		userRoles29.add(new UserRole(user29, role29));
 		
 		userService.createUser(user29, userRoles29);
 		
@@ -443,7 +457,7 @@ public class MybookstoreApplication implements CommandLineRunner {
 		Role role30= new Role();
 		role30.setRoleId(1);
 		role30.setName("ROLE_USER");
-		userRoles.add(new UserRole(user30, role30));
+		userRoles30.add(new UserRole(user30, role30));
 		
 		userService.createUser(user30, userRoles30);*/
 	}
