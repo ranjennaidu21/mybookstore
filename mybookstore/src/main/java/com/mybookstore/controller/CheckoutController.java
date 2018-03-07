@@ -81,6 +81,7 @@ public class CheckoutController {
 	public String checkout(@RequestParam("id") Long cartId,
 			@RequestParam(value = "missingRequiredField", required = false) boolean missingRequiredField, Model model,
 			Principal principal) {
+		System.out.println("AAAA");
 		User user = userService.findByUsername(principal.getName());
 
 		if (cartId != user.getShoppingCart().getId()) {
@@ -88,7 +89,7 @@ public class CheckoutController {
 		}
 
 		List<CartItem> cartItemList = cartItemService.findByShoppingCart(user.getShoppingCart());
-
+		System.out.println("BBBB");
 		if (cartItemList.size() == 0) {
 			model.addAttribute("emptyCart", true);
 			return "forward:/shoppintCart/cart";
@@ -100,7 +101,7 @@ public class CheckoutController {
 				return "forward:/shoppingCart/cart";
 			}
 		}
-
+		System.out.println("CCCCC");
 		List<UserShipping> userShippingList = user.getUserShippingList();
 		List<UserPayment> userPaymentList = user.getUserPaymentList();
 
@@ -112,13 +113,13 @@ public class CheckoutController {
 		} else {
 			model.addAttribute("emptyPaymentList", false);
 		}
-
+		System.out.println("DDDDD");
 		if (userShippingList.size() == 0) {
 			model.addAttribute("emptyShippingList", true);
 		} else {
 			model.addAttribute("emptyShippingList", false);
 		}
-
+		System.out.println("EEEE");
 		ShoppingCart shoppingCart = user.getShoppingCart();
 
 		for (UserShipping userShipping : userShippingList) {
@@ -133,13 +134,13 @@ public class CheckoutController {
 				billingAddressService.setByUserBilling(userPayment.getUserBilling(), billingAddress);
 			}
 		}
-
+		System.out.println("FFFF");
 		model.addAttribute("shippingAddress", shippingAddress);
 		model.addAttribute("payment", payment);
 		model.addAttribute("billingAddress", billingAddress);
 		model.addAttribute("cartItemList", cartItemList);
 		model.addAttribute("shoppingCart", user.getShoppingCart());
-
+		System.out.println("GGGG");
 		List<String> stateList = USConstants.listOfUSStatesCode;
 		Collections.sort(stateList);
 		model.addAttribute("stateList", stateList);
@@ -149,7 +150,7 @@ public class CheckoutController {
 		if (missingRequiredField) {
 			model.addAttribute("missingRequiredField", true);
 		}
-
+		System.out.println("HHHH");
 		return "checkout";
 
 	}
@@ -159,6 +160,7 @@ public class CheckoutController {
 			@ModelAttribute("billingAddress") BillingAddress billingAddress, @ModelAttribute("payment") Payment payment,
 			@ModelAttribute("billingSameAsShipping") String billingSameAsShipping,
 			@ModelAttribute("shippingMethod") String shippingMethod, Principal principal, Model model) {
+		System.out.println("IIII");
 		ShoppingCart shoppingCart = userService.findByUsername(principal.getName()).getShoppingCart();
 
 		List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
@@ -173,7 +175,7 @@ public class CheckoutController {
 			billingAddress.setBillingAddressCountry(shippingAddress.getShippingAddressCountry());
 			billingAddress.setBillingAddressZipcode(shippingAddress.getShippingAddressZipcode());
 		}
-
+		System.out.println("JJJJ");
 		if (shippingAddress.getShippingAddressStreet1().isEmpty() 
 				|| shippingAddress.getShippingAddressCity().isEmpty()
 				|| shippingAddress.getShippingAddressState().isEmpty()
@@ -190,9 +192,9 @@ public class CheckoutController {
 		User user = userService.findByUsername(principal.getName());
 		
 		Order order = orderService.createOrder(shoppingCart, shippingAddress, billingAddress, payment, shippingMethod, user);
-		
+		System.out.println("KKKK");
 		//mailSender.send(mailConstructor.constructOrderConfirmationEmail(user, order, Locale.ENGLISH));
-		
+		System.out.println("LLLL");
 		shoppingCartService.clearShoppingCart(shoppingCart);
 		
 		LocalDate today = LocalDate.now();
@@ -203,9 +205,9 @@ public class CheckoutController {
 		} else {
 			estimatedDeliveryDate = today.plusDays(3);
 		}
-		
+		System.out.println("MMMM");
 		model.addAttribute("estimatedDeliveryDate", estimatedDeliveryDate);
-		
+		System.out.println("NNNN");
 		return "orderSubmittedPage";
 	}
 
