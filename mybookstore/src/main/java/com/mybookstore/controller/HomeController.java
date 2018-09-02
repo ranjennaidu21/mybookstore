@@ -12,6 +12,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -50,6 +52,8 @@ import com.mybookstore.utility.USConstants;
 
 @Controller
 public class HomeController {
+	
+	Logger log = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
 	private JavaMailSender mailSender;
@@ -410,7 +414,7 @@ public class HomeController {
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
 		model.addAttribute("userShippingList", user.getUserShippingList());
 		model.addAttribute("orderList", user.getOrderList());
-		
+		log.debug("USERNAME:  {} SUCCESSFULLY ADDED DEFAULT BILLING CREDIT CARD INFORMATIONS ", user.getUsername());
 		return "myProfile";
 	}
 	
@@ -429,7 +433,7 @@ public class HomeController {
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
 		model.addAttribute("userShippingList", user.getUserShippingList());
 		model.addAttribute("orderList", user.getOrderList());
-		
+		log.debug("USERNAME:  {} SUCCESSFULLY ADDED DEFAULT SHIPPING ADDRESS INFORMATIONS ", user.getUsername());
 		return "myProfile";
 	}
 	
@@ -627,7 +631,7 @@ public class HomeController {
 		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		model.addAttribute("orderList", user.getOrderList());
-		
+		log.debug("USERNAME:  {} SUCCESSFULLY UPDATED USER INFORMATIONS ", user.getUsername());
 		return "myProfile";
 	}
 	

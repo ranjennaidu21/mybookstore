@@ -19,9 +19,14 @@ import com.mybookstore.service.CartItemService;
 import com.mybookstore.service.ShoppingCartService;
 import com.mybookstore.service.UserService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Controller
 @RequestMapping("/shoppingCart")
 public class ShoppingCartController {
+	
+	Logger log = LoggerFactory.getLogger(ShoppingCartController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -66,7 +71,7 @@ public class ShoppingCartController {
 		
 		CartItem cartItem = cartItemService.addBookToCartItem(book, user, Integer.parseInt(qty));
 		model.addAttribute("addBookSuccess", true);
-		
+		log.debug("USERNAME:  {} loggedin. START OF SHOPPING ", user.getUsername());
 		return "forward:/bookDetail?id="+book.getId();
 	}
 	

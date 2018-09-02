@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,8 @@ import com.mybookstore.utility.USConstants;
 
 @Controller
 public class CheckoutController {
+	
+	Logger log = LoggerFactory.getLogger(CheckoutController.class);
 
 	private ShippingAddress shippingAddress = new ShippingAddress();
 	private BillingAddress billingAddress = new BillingAddress();
@@ -154,6 +158,7 @@ public class CheckoutController {
 			model.addAttribute("missingRequiredField", true);
 		}
 		System.out.println("HHHH");
+		log.debug("USERNAME:  {} STARTED TO ENTER INFORMATIONS ", user.getUsername());
 		return "checkout";
 
 	}
@@ -211,6 +216,7 @@ public class CheckoutController {
 		System.out.println("MMMM");
 		model.addAttribute("estimatedDeliveryDate", estimatedDeliveryDate);
 		System.out.println("NNNN");
+		log.debug("USERNAME:  {} COMPLETED SUBMITTING ORDER ", user.getUsername());
 		return "orderSubmittedPage";
 	}
 
